@@ -1,3 +1,36 @@
+> **This is a personal fork by DO7TC (stardado).**
+> The original project is maintained by CA2RXU: [richonguzman/LoRa_APRS_iGate](https://github.com/richonguzman/LoRa_APRS_iGate)
+>
+> This fork was created on 2026-04-03, branching off from upstream commit `005abb3` (version 2026-03-25).
+> It exists to support hardware not yet covered by the upstream project and is used at an automated amateur radio station in Germany.
+>
+> ### Changes in this fork (DO7TC)
+>
+> **New hardware support:**
+> - **LILYGO T-Internet-PoE + OE5BPA LoRa HAT** — Ethernet-based iGate with PoE power supply
+>   - Board definition, pin mapping, PlatformIO target `lilygo-t-internet-poe-oe5bpa-lora-hat`
+>   - SX1276 LoRa module on SPI, RFM95-compatible
+>
+> **Networking improvements:**
+> - WiFi DHCP hostname (Option 12) now correctly propagated — hostname appears in router DHCP leases instead of generic `esp32-XXXXXX`
+> - Ethernet hostname set correctly via `ARDUINO_EVENT_ETH_START` event
+> - Static IP configuration for both WiFi and Ethernet interfaces via the Web UI
+> - `NetworkManager` extended: `isEthernetEnabled()`, `setWiFiStaticIP()`, `getEthernetMACAddress()` (reads MAC directly from eFuse via `esp_read_mac`)
+>
+> **mDNS / DNS-SD:**
+> - Optional mDNS support (default: off), configurable via Web UI
+> - HTTP service announced as `_http._tcp` on port 80
+> - When TNC server is enabled alongside mDNS: `_kiss-tnc._tcp` announced on port 8001 per [hessu/aprs-specs TCP-KISS-DNS-SD](https://github.com/hessu/aprs-specs/blob/master/TCP-KISS-DNS-SD.md)
+>
+> **Web UI improvements:**
+> - Merged scattered WiFi/Network sections into a single **Network** section
+> - Shows WiFi and Ethernet MAC addresses next to the respective Static IP headings
+> - LAN-specific UI elements (Ethernet Static IP, disable-WiFi-on-LAN toggle) are automatically grayed out on boards without Ethernet
+> - mDNS enable/disable toggle
+> - `/capabilities.json` endpoint reports `wifiMac`, `hasEthernet`, `ethernetMac` at runtime
+
+____________________________________________________
+
 # CA2RXU LoRa APRS iGate/Digipeater
 
 This firmware is for using ESP32 based boards with LoRa Modules and GPS to live in the APRS world.
