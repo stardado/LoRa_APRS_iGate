@@ -10,6 +10,7 @@
 > - **LILYGO T-Internet-PoE + OE5BPA LoRa HAT** — Ethernet-based iGate with PoE power supply
 >   - Board definition, pin mapping, PlatformIO target `lilygo-t-internet-poe-oe5bpa-lora-hat`
 >   - SX1276 LoRa module on SPI, RFM95-compatible
+>   - HAT hardware by OE5BPA — see [lora-aprs/LoRa_APRS_iGate](https://github.com/lora-aprs/LoRa_APRS_iGate) for the original OE5BPA firmware and hardware design
 >
 > **Networking improvements:**
 > - WiFi DHCP hostname (Option 12) now correctly propagated — hostname appears in router DHCP leases instead of generic `esp32-XXXXXX`
@@ -28,6 +29,7 @@
 > - LAN-specific UI elements (Ethernet Static IP, disable-WiFi-on-LAN toggle) are automatically grayed out on boards without Ethernet
 > - mDNS enable/disable toggle
 > - `/capabilities.json` endpoint reports `wifiMac`, `hasEthernet`, `ethernetMac` at runtime
+> - **APRS-IS passcode generator** — "Generate from Call" button next to the passcode field; computes the standard APRS-IS passcode from the base callsign (SSID stripped) using the well-known XOR hash algorithm. Algorithm based on [PU5KOD/APRS-Passcode-Generator](https://github.com/PU5KOD/APRS-Passcode-Generator) and [DO3SWW/Web-Aprs-Passcode](https://github.com/DO3SWW/Web-Aprs-Passcode).
 
 ____________________________________________________
 
