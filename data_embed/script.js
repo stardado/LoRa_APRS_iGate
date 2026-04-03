@@ -649,8 +649,24 @@ document.querySelector('a[href="/received-packets"]').addEventListener('click', 
 
     document.getElementById('received-packets').classList.remove('d-none');
     document.getElementById('configuration').classList.add('d-none');
-    
+
     document.querySelector('button[type=submit]').remove();
 
     fetchReceivedPackets();
 })
+
+function generateAprsPasscode() {
+    const callsign = document.getElementById('callsign').value.trim();
+    if (!callsign) {
+        alert('Please enter a callsign first.');
+        return;
+    }
+    // Strip SSID (everything after '-'), uppercase
+    const base = callsign.split('-')[0].toUpperCase();
+    let hash = 0x73e2;
+    for (let i = 0; i < base.length; i += 2) {
+        hash ^= base.charCodeAt(i) << 8;
+        if (i + 1 < base.length) hash ^= base.charCodeAt(i + 1);
+    }
+    document.getElementById('aprs_is.passcode').value = hash & 0x7fff;
+}

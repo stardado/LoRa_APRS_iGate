@@ -574,13 +574,21 @@
                                             class="form-label"
                                             >Passcode</label
                                         >
-                                        <input
-                                            type="text"
-                                            name="aprs_is.passcode"
-                                            id="aprs_is.passcode"
-                                            class="form-control"
-                                            value="XYZWV"
-                                        />
+                                        <div class="input-group">
+                                            <input
+                                                type="text"
+                                                name="aprs_is.passcode"
+                                                id="aprs_is.passcode"
+                                                class="form-control"
+                                                value="XYZWV"
+                                            />
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-secondary btn-sm"
+                                                onclick="generateAprsPasscode()"
+                                                title="Generate passcode from callsign"
+                                            >Generate from Call</button>
+                                        </div>
                                     </div>
                                     <div class="col-4">
                                         <label
